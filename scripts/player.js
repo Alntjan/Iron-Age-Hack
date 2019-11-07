@@ -23,6 +23,8 @@ class Player {
     this.hurtSound.src = "../sounds/hurt.mp3";
     this.deadSound = new Audio();
     this.deadSound.src = "../sounds/sodead.mp3";
+    this.winSound = new Audio();
+    this.winSound.src = "../sounds/rejoice.ogg";
     this.deadSoundFlag = true;
 
     this.health = 100;

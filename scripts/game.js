@@ -42,6 +42,8 @@ class Game {
       }
     } else if(this.player.githubs.length === 5){
       this.context.drawImage(wonImage, 0, 0, 640, 640);
+      this.sound.pause();
+      this.player.winSound.play();
     } else {
       this.level.drawLevel();
     }
