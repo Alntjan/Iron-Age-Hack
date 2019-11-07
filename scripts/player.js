@@ -32,7 +32,7 @@ class Player {
     this.onAir = true;
     this.wasOnPlatform = false;
 
-    this.devMode = true;
+    this.devMode = false;
   }
 
   drawPlayer(imgCol, imgRow) {

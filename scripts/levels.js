@@ -12,7 +12,7 @@ class Level {
     this.bugsArray = [this.bug];
     this.gravity = 0.3;
     this.friction = 0.8;
-    this.devMode = true;
+    this.devMode = false;
     this.context = game.context;
     this.runAnimationSprite = 0;
     this.runAnimationCounter = 0;
