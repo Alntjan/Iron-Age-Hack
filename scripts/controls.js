@@ -16,6 +16,7 @@ class Controls {
           if (this.player.velocity.x > -1) {
             this.player.velocity.x += -2;
           }
+          this.player.showMoonWalk = true;
           //this.player.velocity.x = -5;
           break;
         case 38:
@@ -34,15 +35,17 @@ class Controls {
           event.preventDefault();
           this.player.velocity.y += 5;
           break;
-        case 13:
+        case 89:
           event.preventDefault();
-          this.game.level.restartLevel();
+          if(this.game.state === true){
+            this.game.level.restartLevel();
+          }
           break;
         case 32:
           event.preventDefault();
           let newAttack = new Attack(this.game.player);
           newAttack.attackSound.play();
-          this.game.player.attacks.push(newAttack);
+          this.game.player.attacks.push(newAttack);          
           break;
       }
     });
@@ -51,6 +54,7 @@ class Controls {
         case 37:
           event.preventDefault();
           this.player.velocity.x = 0;
+          this.player.showMoonWalk = false;
           break;
         case 38:
           event.preventDefault();

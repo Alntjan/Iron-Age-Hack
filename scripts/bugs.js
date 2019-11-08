@@ -2,13 +2,14 @@ const bugImage = new Image();
 bugImage.src = "./../images/player.png";
 
 class Bug {
-    constructor(level) {
+    constructor(level, xPos, yPos) {
         this.level = level;
         this.game = level.game;
         this.position = {
-          x: 200,
-          y: 398
-        };
+            x: xPos,
+            y: yPos
+        };        
+        console.log("BUG CONSTRUCTOR", this.position.x);
         this.gridPosition = {
           row: 0,
           col: 0
@@ -43,6 +44,7 @@ class Bug {
           SIZE_X,
           SIZE_Y
         );
+
         this.game.context.save();
         this.game.context.fillStyle = "green";
         this.game.context.fillRect(this.position.x-5, this.position.y+10, this.health, 4);
@@ -70,6 +72,7 @@ class Bug {
         );
         this.game.context.restore();
           }
+          
       }
 
       updateBug(){
@@ -79,13 +82,15 @@ class Bug {
             this.velocity.x -= 0.02;
           }
           this.position.x += this.velocity.x;
+          
+         console.log("UPDATE BUG LAST LINE", this.position.x);
       }
 
       invertBug(){
-        if(Math.sign(this.velocity.x) === 1){
-            this.velocity.x = -0.02;
-          } else {
-            this.velocity.x = 0.02;
-          }
-      }
+          if(Math.sign(this.velocity.x) === 1){
+              this.velocity.x = -0.02;
+            } else {
+                this.velocity.x = 0.02;
+            }
+        }
 }

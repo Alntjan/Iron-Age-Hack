@@ -14,6 +14,8 @@ class Game {
     this.level = new Level(this, this.player);
     this.controls = new Controls(this);
 
+    this.state = false;
+
     this.sound = new Audio();
     this.sound.src = './../sounds/backgroundsound.mp3';
     this.winSound = new Audio();
@@ -25,7 +27,7 @@ class Game {
     this.tempTimeStamp = 0;
     this.tempTimeStamp2 = 0;
 
-    this.animationPlayer = 1000;
+    this.animationPlayer = 4000;
     this.bugSpeed = 1500;
 
     const CANVAS_HEIGHT = this.context.height;
@@ -59,11 +61,19 @@ class Game {
   updateEverything(timestamp) {
     this.level.updateLevel();
     this.player.updatePlayer();
+
     if (this.tempTimeStamp < timestamp - this.animationPlayer) {
+      this.player.indexBubble = Math.floor(Math.random()*this.player.bubblesArray.length);
+      this.player.showBubble = !(this.player.showBubble);
       this.tempTimeStamp = timestamp;
     }
+
     if (this.tempTimeStamp2 < timestamp - this.bugSpeed) {
-      this.level.bug.invertBug();
+      for (let bug of this.level.bugsArray) {    
+        if (bug.health > 0){
+            bug.invertBug();
+        }
+      }
       this.tempTimeStamp2 = timestamp;
     }
   }
@@ -75,6 +85,7 @@ class Game {
   }
 
   startGame() {
+    this.state = true;
     this.controls.setControls();
     this.sound.play();
     this.animation();

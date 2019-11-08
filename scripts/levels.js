@@ -8,8 +8,11 @@ class Level {
   constructor(game, player) {
     this.game = game;
     this.player = player;
-    this.bug = new Bug(this);
-    this.bugsArray = [this.bug];
+    this.bugsArray = [];
+    this.bugsArray.push(new Bug(this, 170, 398), new Bug(this, 300, 398));
+    console.log("CONSTRUCTOR", this.bugsArray[0].position.x);
+    
+    
     this.gravity = 0.3;
     this.friction = 0.8;
     this.devMode = false;
@@ -103,15 +106,12 @@ class Level {
 
   drawLevel() {
     this.context.save();
-    //this.context.fillStyle = "red";
-    //this.context.fillRect(0, 0, 640, 640);
     this.context.drawImage(bgImage, 0, 0, 640, 640);
     this.context.restore();
+
     this.drawMaps(this.map);
     this.drawMaps(this.objectsMap);
-    if (this.bug.health > 0){
-        this.bug.drawBug();
-    }
+
     this.player.drawHealth();
     this.drawGithubs();
     if(this.player.velocity.x != 0){
@@ -128,6 +128,15 @@ class Level {
     } else{ 
         this.player.drawPlayer();
     }
+
+    for (let bug of this.bugsArray) {    
+        console.log("DRAW ARRAY", bug.position.x);
+        if (bug.health > 0){
+            console.log("DRAW ARRAY BUG", bug.position.x);
+            bug.drawBug();
+        }
+    }
+
     for (const attack of this.player.attacks) {
         attack.drawAttack();
     }
@@ -136,7 +145,12 @@ class Level {
   setLevel() {}
 
   updateLevel() {
-      this.bug.updateBug();
+    for (let bugsy of this.bugsArray) {
+        console.log("UPDATE ARRAY BEGI",bugsy.position.x);
+        
+        bugsy.updateBug();
+        console.log("UPDATE ARRAY LAST",bugsy.position.x);
+    }
   }
 
   restartLevel(){

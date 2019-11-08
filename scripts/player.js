@@ -1,5 +1,7 @@
 const playerImage = new Image();
 playerImage.src = "./../images/player.png";
+const playerBubble = new Image();
+playerBubble.src = "./../images/bubble.png";
 
 class Player {
   constructor(game) {
@@ -24,6 +26,12 @@ class Player {
     this.deadSound = new Audio();
     this.deadSound.src = "../sounds/sodead.mp3";
     this.deadSoundFlag = true;
+
+    this.bubblesArray = ["This code has|lots of bugs!", "To the pull|request!", "May the javascript|be with me!", "I hope Zé|sees this bubble!", "For the power|of Le Forestier!", "Just one level|Really? Pfff..", "BOR|BAAAAAA!", "My lady Jasmin|is waiting!", "Xangai city|for life!"];
+    this.showBubble = false;
+    this.indexBubble = 0;
+
+    this.showMoonWalk = false;
 
     this.attacks = [];
 
@@ -55,6 +63,47 @@ class Player {
       SIZE_X,
       SIZE_Y
     );
+    if(this.showBubble){
+        this.game.context.save();
+        this.game.context.drawImage(playerBubble, this.position.x - 90, this.position.y - 55, 102, 66);
+        this.game.context.fillStyle = "black";
+        this.game.context.font = "18px Arial";
+
+        let stringArray = this.bubblesArray[this.indexBubble].split('|');
+        this.game.context.fillText(
+          `${stringArray[0]}`,
+          this.position.x - 77,
+          this.position.y - 32,
+          75,
+          24
+        );
+        this.game.context.fillText(
+            `${stringArray[1]}`,
+            this.position.x - 72,
+            this.position.y - 16,
+            75,
+            24
+          );
+        this.game.context.restore(); 
+    }
+
+    if(this.showMoonWalk){
+        this.showBubble = false;
+        this.game.context.save();
+        this.game.context.drawImage(playerBubble, this.position.x - 90, this.position.y - 55, 102, 66);
+        this.game.context.fillStyle = "black";
+        this.game.context.font = "18px Arial";
+        this.game.context.fillText(
+          `Moonwalk!`,
+          this.position.x - 75,
+          this.position.y - 22,
+          75,
+          24
+        );
+        this.game.context.restore(); 
+    }
+
+
     if (this.devMode) {
         this.game.context.save();
         this.game.context.strokeStyle = "white";
