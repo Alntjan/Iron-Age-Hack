@@ -9,8 +9,7 @@ class Level {
     this.game = game;
     this.player = player;
     this.bugsArray = [];
-    this.bugsArray.push(new Bug(this, 170, 398), new Bug(this, 300, 398));
-    console.log("CONSTRUCTOR", this.bugsArray[0].position.x);
+    this.bugsArray.push(new Bug(this, 2, 6), new Bug(this, 4, 6),  new Bug(this, 4, 1));
     
     
     this.gravity = 0.3;
@@ -130,9 +129,7 @@ class Level {
     }
 
     for (let bug of this.bugsArray) {    
-        console.log("DRAW ARRAY", bug.position.x);
         if (bug.health > 0){
-            console.log("DRAW ARRAY BUG", bug.position.x);
             bug.drawBug();
         }
     }
@@ -146,10 +143,7 @@ class Level {
 
   updateLevel() {
     for (let bugsy of this.bugsArray) {
-        console.log("UPDATE ARRAY BEGI",bugsy.position.x);
-        
         bugsy.updateBug();
-        console.log("UPDATE ARRAY LAST",bugsy.position.x);
     }
   }
 
@@ -174,8 +168,7 @@ class Level {
   
       this.player.onAir = true;
 
-      this.bug = new Bug(this);
-      this.bugsArray = [this.bug];
+      this.bugsArray.push(new Bug(this, 170, 398), new Bug(this, 300, 398));
 
       this.objectsMap = [
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 20],

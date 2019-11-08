@@ -39,15 +39,16 @@ class Attack {
     }
 
     collideAttack(){
-        for(let bug of this.player.game.level.bugsArray){
-            if(this.position.x > bug.position.x && this.position.x < bug.position.x + 32 && this.position.y > bug.position.y && this.position.y < bug.position.y + 50){
-                bug.health -= 5;
+        let arrayOfBugs = this.player.game.level.bugsArray;
+        for(let bug = 0; bug < arrayOfBugs.length; bug++){
+            if(this.position.x > arrayOfBugs[bug].position.x && this.position.x < arrayOfBugs[bug].position.x + 32 && this.position.y > arrayOfBugs[bug].position.y && this.position.y < arrayOfBugs[bug].position.y + 50){
+                arrayOfBugs[bug].health -= 5;
                 this.player.attacks.splice(0,1);
-                if (bug.health <= 0) {
-                    bug.deadSound.play();
-                    this.player.game.level.bugsArray.splice(bug);
+                if (arrayOfBugs[bug].health <= 0) {
+                    arrayOfBugs[bug].deadSound.play();
+                    this.player.game.level.bugsArray.splice(bug,1);
                 } else {
-                    bug.hurtSound.play();
+                    arrayOfBugs[bug].hurtSound.play();
                 }
                 return true;
             } 
