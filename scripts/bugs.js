@@ -20,6 +20,12 @@ class Bug {
         this.health = 20;
         this.direction = "right";
         this.devMode = false;
+
+        this.hurtSound = new Audio();
+        this.hurtSound.src = "../sounds/insect.flac";
+        this.deadSound = new Audio();
+        this.deadSound.src = "../sounds/deadbug.wav";
+
      }
      drawBug() {
         const SIZE_X = 32;
@@ -37,6 +43,11 @@ class Bug {
           SIZE_X,
           SIZE_Y
         );
+        this.game.context.save();
+        this.game.context.fillStyle = "green";
+        this.game.context.fillRect(this.position.x-5, this.position.y+10, this.health, 4);
+        this.game.context.restore();
+
         if(this.devMode){
         this.game.context.save();
         this.game.context.strokeStyle = "white";

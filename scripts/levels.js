@@ -19,12 +19,12 @@ class Level {
     this.map = [
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 2],
-      [0, 0, 15, 14, 14, 14, 14, 13, 0, 0],
-      [0, 0, 4, 7, 7, 7, 7, 3, 0, 15],
+      [0, 0, 2, 1, 1, 1, 1, 16, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 15],
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 12],
       [2, 16, 0, 0, 0, 0, 0, 0, 0, 12],
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 12],
-      [0, 15, 14, 14, 14, 14, 13, 0, 0, 12],
+      [0, 2, 1, 1, 1, 1, 16, 0, 0, 12],
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 12],
       [5, 14, 14, 14, 14, 14, 14, 14, 14, 9]
     ];
@@ -109,7 +109,9 @@ class Level {
     this.context.restore();
     this.drawMaps(this.map);
     this.drawMaps(this.objectsMap);
-    this.bug.drawBug();
+    if (this.bug.health > 0){
+        this.bug.drawBug();
+    }
     this.player.drawHealth();
     this.drawGithubs();
     if(this.player.velocity.x != 0){
@@ -125,6 +127,9 @@ class Level {
                
     } else{ 
         this.player.drawPlayer();
+    }
+    for (const attack of this.player.attacks) {
+        attack.drawAttack();
     }
   }
 
@@ -155,6 +160,9 @@ class Level {
   
       this.player.onAir = true;
 
+      this.bug = new Bug(this);
+      this.bugsArray = [this.bug];
+
       this.objectsMap = [
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 20],
         [0, 21, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -167,6 +175,7 @@ class Level {
         [0, 0, 0, 0, 0, 0, 0, 18, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
       ];
+
       this.game.sound.play();
       this.player.deadSoundFlag = true;
   }

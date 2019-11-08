@@ -23,9 +23,9 @@ class Player {
     this.hurtSound.src = "../sounds/hurt.mp3";
     this.deadSound = new Audio();
     this.deadSound.src = "../sounds/sodead.mp3";
-    this.winSound = new Audio();
-    this.winSound.src = "../sounds/rejoice.ogg";
     this.deadSoundFlag = true;
+
+    this.attacks = [];
 
     this.health = 100;
     this.direction = "right";
@@ -197,13 +197,13 @@ class Player {
     }
 
     if (this.velocity.x > 0) {
+        this.direction = 'right';
       if (map[currentPosition.borderTop][currentPosition.borderRight] > 0) {
         switch (type) {
             case "platforms":
                 this.position.x = currentPosition.borderLeft * 64 + 31;
                 this.velocity.x = 0;
                 break;
-  
             case "objects":
                 this.position.x += this.velocity.x;
                 this.githubSound.play();
@@ -217,6 +217,7 @@ class Player {
         this.position.x += this.velocity.x;
       }
     } else if (this.velocity.x < 0) {
+        this.direction = 'left';
       if (map[currentPosition.borderTop][currentPosition.borderLeft] > 0) {
         
         switch (type) {
@@ -270,6 +271,10 @@ class Player {
     this.collidePlayer(this.game.level.map, "platforms");
     this.collidePlayer(this.game.level.objectsMap, "objects");
     this.playerVersusBug();
+    for (const attack of this.attacks) {
+        //console.log(attack);
+        attack.updateAttack();
+    }
   }
 
 

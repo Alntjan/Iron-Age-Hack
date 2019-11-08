@@ -13,7 +13,7 @@ class Controls {
       switch (event.keyCode) {
         case 37:
           event.preventDefault();
-          if (this.player.velocity.x > -4) {
+          if (this.player.velocity.x > -1) {
             this.player.velocity.x += -2;
           }
           //this.player.velocity.x = -5;
@@ -26,7 +26,7 @@ class Controls {
           break;
         case 39:
           event.preventDefault();
-          if (this.player.velocity.x < 4) {
+          if (this.player.velocity.x < 2) {
             this.player.velocity.x += 2;
           }          
           break;
@@ -37,6 +37,12 @@ class Controls {
         case 13:
           event.preventDefault();
           this.game.level.restartLevel();
+          break;
+        case 32:
+          event.preventDefault();
+          let newAttack = new Attack(this.game.player);
+          newAttack.attackSound.play();
+          this.game.player.attacks.push(newAttack);
           break;
       }
     });

@@ -16,6 +16,8 @@ class Game {
 
     this.sound = new Audio();
     this.sound.src = './../sounds/backgroundsound.mp3';
+    this.winSound = new Audio();
+    this.winSound.src = "../sounds/rejoice.ogg";
 
     this.didIJustWinThis = false;
     this.didILost = false;
@@ -43,8 +45,9 @@ class Game {
     } else if(this.player.githubs.length === 5){
       this.context.drawImage(wonImage, 0, 0, 640, 640);
       this.sound.pause();
-      this.player.winSound.play();
+      this.winSound.play();
     } else {
+      this.winSound.pause();
       this.level.drawLevel();
     }
   }
