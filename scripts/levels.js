@@ -166,7 +166,7 @@ class Level {
       this.player.onAir = true;
 
       this.bugsArray = [];
-      this.bugsArray.push(new Bug(this, 2, 6), new Bug(this, 4, 6),  new Bug(this, 4, 1));
+      this.bugsArray.push(new Bug(this, 2, 6), new Bug(this, 4, 6),  new Bug(this, 4, 1), new Bug(this, 5, 1));
 
       this.objectsMap = [
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 20],
