@@ -9,7 +9,7 @@ class Level {
     this.game = game;
     this.player = player;
     this.bugsArray = [];
-    this.bugsArray.push(new Bug(this, 2, 6), new Bug(this, 4, 6),  new Bug(this, 4, 1));
+    this.bugsArray.push(new Bug(this, 2, 6), new Bug(this, 4, 6),  new Bug(this, 4, 1), new Bug(this, 5, 1));
     
     this.gravity = 0.3;
     this.friction = 0.8;
