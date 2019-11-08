@@ -35,7 +35,7 @@ class Controls {
           event.preventDefault();
           this.player.velocity.y += 5;
           break;
-        case 89:
+        case 82:
           event.preventDefault();
           if(this.game.state === true){
             this.game.level.restartLevel();
@@ -66,6 +66,15 @@ class Controls {
           break;
         case 40:
           event.preventDefault();
+          break;
+        case 73:
+          event.preventDefault();
+          if (this.game.instructions) {
+            this.game.instructions = false;
+          } else {
+            this.game.instructions = true;
+          }
+                    
           break;
       }
     });

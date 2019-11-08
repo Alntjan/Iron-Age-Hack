@@ -11,7 +11,6 @@ class Level {
     this.bugsArray = [];
     this.bugsArray.push(new Bug(this, 2, 6), new Bug(this, 4, 6),  new Bug(this, 4, 1));
     
-    
     this.gravity = 0.3;
     this.friction = 0.8;
     this.devMode = false;
@@ -19,17 +18,17 @@ class Level {
     this.runAnimationSprite = 0;
     this.runAnimationCounter = 0;
     this.map = [
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 2],
-      [0, 0, 2, 1, 1, 1, 1, 16, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 15],
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 12],
-      [2, 16, 0, 0, 0, 0, 0, 0, 0, 12],
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 12],
-      [0, 2, 1, 1, 1, 1, 16, 0, 0, 12],
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 12],
-      [5, 14, 14, 14, 14, 14, 14, 14, 14, 9]
-    ];
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 2],
+        [0, 0, 2, 1, 1, 1, 1, 16, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 15],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 12],
+        [2, 16, 0, 0, 0, 0, 0, 0, 0, 12],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 12],
+        [0, 2, 1, 1, 1, 1, 16, 0, 0, 12],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 12],
+        [5, 14, 14, 14, 14, 14, 14, 14, 14, 9]
+        ];
     this.objectsMap = [
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 20],
         [0, 21, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -44,7 +43,6 @@ class Level {
       ];
   }
 
-  setFirstLevel() {}
 
   drawMaps(mapArray){
     for (let row = 0; row < mapArray.length; row++) {
@@ -139,7 +137,6 @@ class Level {
     }
   }
 
-  setLevel() {}
 
   updateLevel() {
     for (let bugsy of this.bugsArray) {
@@ -168,7 +165,8 @@ class Level {
   
       this.player.onAir = true;
 
-      this.bugsArray.push(new Bug(this, 170, 398), new Bug(this, 300, 398));
+      this.bugsArray = [];
+      this.bugsArray.push(new Bug(this, 2, 6), new Bug(this, 4, 6),  new Bug(this, 4, 1));
 
       this.objectsMap = [
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 20],
